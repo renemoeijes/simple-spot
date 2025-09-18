@@ -1,0 +1,11 @@
+#!/bin/sh
+set -e
+
+# Stop and disable service before removal
+if [ -x /bin/systemctl ] || [ -x /usr/bin/systemctl ]; then
+    systemctl stop simple-spot.service || true
+    systemctl disable simple-spot.service || true
+    systemctl daemon-reload || true
+fi
+
+exit 0

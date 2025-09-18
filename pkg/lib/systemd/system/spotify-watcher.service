@@ -1,0 +1,14 @@
+[Unit]
+Description=Spotify Connect session watcher
+After=raspotify.service
+Requires=raspotify.service
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/spotify-session-watcher.sh
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target
+
