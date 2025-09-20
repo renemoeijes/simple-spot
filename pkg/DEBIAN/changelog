@@ -1,5 +1,11 @@
+simple-spot (1.0.1) stable; urgency=low
+
+  * Set detectie string to <Ok(NEW_SESSION)>
+
+ -- R. Moeijes <simpelmuis@gmail.com>  Sat, 20 Sep 2025 12:00:00 +0200
+
 simple-spot (1.0.0) stable; urgency=low
 
   * Eerste release van simple-spot-agent
 
- -- R. Moeijes simpelmuis@gmail.com  Tue, 16 Sep 2025 12:00:00 +0200
+ -- R. Moeijes <simpelmuis@gmail.com>  Tue, 16 Sep 2025 12:00:00 +0200

@@ -3,9 +3,29 @@ set -e
 
 case "$1" in
    configure)
-      systemctl daemon-reload
-      systemctl enable simple-spot.service
-      systemctl start simple-spot.service
+      if [ -x /usr/bin/librespot ] && [ -f /lib/systemd/system/raspotify.service ]; then
+      CONF=
+      if [ -f /etc/raspotify/conf ]; then
+         CONF=/etc/raspotify/conf
+      elif [ -f /etc/raspotify.service/conf ]; then
+         CONF=/etc/raspotify.service/conf
+      fi
+
+      if [ -n "$CONF" ]; then
+         # Vervang LOG_LEVEL regel (actief)
+         sed 's/^[[:space:]]*LIBRESPOT_LOG_LEVEL=.*/LIBRESPOT_LOG_LEVEL=debug/' "$CONF" > "$CONF.tmp" && mv "$CONF.tmp" "$CONF"
+         # Voeg toe als nog niet aanwezig
+         if ! grep '^[[:space:]]*LIBRESPOT_LOG_LEVEL=' "$CONF" >/dev/null 2>&1; then
+            echo 'LIBRESPOT_LOG_LEVEL=debug' >> "$CONF"
+         fi
+         # Quiet uitzetten (alleen actieve regel)
+         sed 's/^[[:space:]]*LIBRESPOT_QUIET=.*/#LIBRESPOT_QUIET=on/' "$CONF" > "$CONF.tmp" && mv "$CONF.tmp" "$CONF"
+         systemctl restart raspotify || true
+      fi
+      fi
+
+      systemctl enable simple-spot.service >/dev/null 2>&1 || true
+      systemctl restart simple-spot.service || true
    ;;
 esac
 

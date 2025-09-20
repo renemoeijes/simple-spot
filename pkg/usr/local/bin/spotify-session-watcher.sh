@@ -2,7 +2,8 @@
 
 # Log watcher voor raspotify
 journalctl -u raspotify -f -o cat | while read -r line; do
-   if echo "$line" | grep -q "Session connected"; then
+   # if echo "$line" | grep -q "Session connected"; then
+   if echo "$line" | grep -q "<Ok(NEW_SESSION)>"; then
       echo "Spotify session detected: disconnecting Bluetooth..."
       # Disconnect alle Bluetooth devices
       bluetoothctl disconnect $(bluetoothctl devices | awk '{print $2}')
