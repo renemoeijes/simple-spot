@@ -18,6 +18,7 @@ journalctl -u raspotify -f -o cat | while IFS= read -r line; do
       # if command -v alsactl >/dev/null 2>&1; then
       #   alsactl kill rescan >/dev/null 2>&1 || true
       # fi
+      command -v alsactl >/dev/null 2>&1 && alsactl kill rescan || true
       ;;
   esac
 done

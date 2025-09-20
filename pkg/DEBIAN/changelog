@@ -1,5 +1,6 @@
-simple-spot (1.0.2) stable; urgency=low
+en simple-spot (1.0.2) stable; urgency=low
 
+  * Added the alsa reset which was removed by AI.
   * Watcher: use <Ok(NEW_SESSION)> trigger robustly
   * Remove nonexistent 'alsa force-reload' call
   * Only disconnect actually connected Bluetooth devices
