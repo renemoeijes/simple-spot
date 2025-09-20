@@ -1,8 +1,10 @@
 Package: simple-spot
-Version: 1.0.1
-Maintainer: R. Moeijes simpelmuis@gmail.com
+Version: 1.0.2
+Section: sound
+Priority: optional
 Architecture: all
-Depends: 
-Description: Simple spotify agent and device manager
- A small monitor script, for stopping the simple-bt agent if spotyfy connection is requested
- disconnects other devices when a new device connects. 
+Depends: raspotify (>= 0.47.0), bash, bluetooth
+Maintainer: R. Moeijes <simpelmuis@gmail.com>
+Description: Simple Spotify session watcher
+ A minimal helper that monitors raspotify journal output and
+ disconnects active Bluetooth devices on new Spotify sessions.
