@@ -14,10 +14,12 @@ journalctl -u raspotify -f -o cat | while IFS= read -r line; do
           [ -n "$mac" ] && bluetoothctl disconnect "$mac" >/dev/null 2>&1
         done
       fi
-      # Optionele ALSA “reset” (alleen indien echt nodig):
-      # if command -v alsactl >/dev/null 2>&1; then
-      #   alsactl kill rescan >/dev/null 2>&1 || true
-      # fi
+
+      # stop RasRadio
+      pkill -f RasRadio
+      echo "\[INFO\] RasRadio gestopt (als het draaide)"
+
+      # ALSA "reset"
       command -v alsactl >/dev/null 2>&1 && alsactl kill rescan || true
       ;;
   esac

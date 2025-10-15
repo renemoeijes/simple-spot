@@ -1,6 +1,6 @@
-<<<<<<< HEAD
+
 # simple-spot
-=======
+
 Simple Spotify Agent for rpi. 
 
 
